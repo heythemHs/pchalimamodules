@@ -1,0 +1,5 @@
+# Claude Code internal working directories
+.claude/worktrees/
+
+# Composer vendor directories
+vendor/
