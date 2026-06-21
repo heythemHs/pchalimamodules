@@ -3,3 +3,4 @@
 
 # Composer vendor directories
 vendor/
+.claire-worktrees
