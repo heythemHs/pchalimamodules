@@ -1,0 +1,38 @@
+Madame, Monsieur {{customer_firstname}} {{customer_lastname}},
+
+Nous avons bien reçu votre demande de rétractation soumise le {{submitted_at}}.
+
+VOTRE NUMÉRO DE RÉFÉRENCE : {{request_reference}}
+
+Veuillez conserver ce numéro de référence et le citer dans toute correspondance avec nous.
+
+DÉTAILS DE LA COMMANDE
+-----------------------
+Référence commande       : {{order_reference}}
+Étendue de la rétractation : {{withdrawal_scope}}
+Soumis le                : {{submitted_at}}
+
+ARTICLES DÉCLARÉS POUR RÉTRACTATION
+-------------------------------------
+{{items_table}}
+
+{{#if customer_statement}}
+VOTRE DÉCLARATION
+-----------------
+{{customer_statement}}
+{{/if}}
+
+AVIS IMPORTANT
+--------------
+Cet accusé de réception confirme uniquement la réception de votre déclaration de rétractation.
+Il n'entraîne PAS automatiquement l'annulation de votre commande, le remboursement ou
+le retour des marchandises. Notre équipe traitera votre demande dans un délai de 14 jours
+et vous contactera avec les instructions nécessaires.
+
+{{#if request_view_url}}
+Suivre votre demande :
+{{request_view_url}}
+{{/if}}
+
+Cordialement,
+{{shop_name}}

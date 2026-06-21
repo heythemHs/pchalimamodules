@@ -1,0 +1,8 @@
+========================================
+[ADMIN NOTIFICATION] {shop_name}
+========================================
+
+{dynamic_text_content}
+
+--
+Internal notification from {shop_url}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>[Admin] Nouvelle demande de rétractation — {{shop_name}}</title>
+<style>
+  body { font-family:Arial,Helvetica,sans-serif; font-size:14px; color:#333333; margin:0; padding:0; }
+  table { border-collapse:collapse; width:100%; margin-bottom:16px; }
+  th, td { text-align:left; padding:8px 12px; border:1px solid #dddddd; }
+  th { background:#f2f2f2; width:200px; }
+  .alert-new { background:#e74c3c; color:#ffffff; padding:12px 16px; border-radius:4px; font-weight:bold; margin-bottom:20px; }
+  .ref-value { font-size:18px; font-weight:bold; color:#2c3e50; }
+  .btn { display:inline-block; background:#e74c3c; color:#ffffff; text-decoration:none; padding:10px 20px; border-radius:4px; font-weight:bold; }
+</style>
+</head>
+<body>
+<div class="alert-new">Nouvelle demande de rétractation reçue — action requise</div>
+
+<h2 style="font-size:16px; border-bottom:1px solid #eeeeee; padding-bottom:6px;">Résumé de la demande</h2>
+<table>
+  <tr><th>Référence</th><td><span class="ref-value">{{request_reference}}</span></td></tr>
+  <tr><th>Soumis le</th><td>{{submitted_at}}</td></tr>
+  <tr><th>Nom du consommateur</th><td>{{customer_firstname}} {{customer_lastname}}</td></tr>
+  <tr><th>Référence commande</th><td>{{order_reference}}</td></tr>
+  <tr><th>Étendue de la rétractation</th><td>{{withdrawal_scope}}</td></tr>
+  <tr><th>Boutique</th><td>{{shop_name}}</td></tr>
+</table>
+
+<h2 style="font-size:16px; border-bottom:1px solid #eeeeee; padding-bottom:6px;">Articles</h2>
+{{items_table}}
+
+{{#if customer_statement}}
+<h2 style="font-size:16px; border-bottom:1px solid #eeeeee; padding-bottom:6px; margin-top:24px;">Déclaration du consommateur</h2>
+<p style="background:#f9f9f9; border-left:3px solid #cccccc; padding:10px 14px; font-style:italic;">{{customer_statement}}</p>
+{{/if}}
+
+<p style="text-align:center; margin-top:24px;">
+  <a href="{{admin_request_url}}" class="btn">Voir dans le back-office</a>
+</p>
+
+<p style="font-size:12px; color:#888888; margin-top:24px;">
+  Notification automatique — ne pas répondre à cet e-mail.
+  Connectez-vous au back-office pour traiter cette demande.
+</p>
+</body>
+</html>

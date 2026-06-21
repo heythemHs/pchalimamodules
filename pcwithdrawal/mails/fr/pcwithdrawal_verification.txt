@@ -1,0 +1,19 @@
+Bonjour,
+
+Nous avons reçu une demande de rétractation associée à la commande {{order_reference}}
+sur {{shop_name}}.
+
+Pour vérifier votre identité et poursuivre, veuillez ouvrir le lien suivant :
+
+  {{verification_url}}
+
+Ce lien expire le {{verification_expiration}} et ne peut être utilisé qu'une seule fois.
+
+AVIS DE SÉCURITÉ
+----------------
+Si vous n'avez pas initié de demande de rétractation, veuillez ignorer cet e-mail.
+Aucune modification ne sera apportée à votre commande tant que vous n'aurez pas
+effectué la vérification.
+
+Cordialement,
+{{shop_name}}

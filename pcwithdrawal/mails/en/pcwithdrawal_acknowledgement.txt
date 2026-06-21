@@ -1,0 +1,40 @@
+Dear {{customer_firstname}} {{customer_lastname}},
+
+We have received your withdrawal request submitted on {{submitted_at}}.
+
+YOUR REFERENCE NUMBER: {{request_reference}}
+
+Please keep this reference number for your records and quote it in any communication with us.
+
+ORDER DETAILS
+-------------
+Order reference  : {{order_reference}}
+Withdrawal scope : {{withdrawal_scope}}
+Submitted at     : {{submitted_at}}
+
+ITEMS DECLARED FOR WITHDRAWAL
+------------------------------
+{{items_table}}
+
+{{#if customer_statement}}
+YOUR STATEMENT
+--------------
+{{customer_statement}}
+{{/if}}
+
+IMPORTANT NOTICE
+----------------
+This acknowledgement confirms receipt of your withdrawal declaration only.
+It does NOT automatically cancel your order, trigger a refund, or authorise
+return of goods. Our team will process your request within 14 days and
+contact you with further instructions.
+
+{{#if request_view_url}}
+Track your request status:
+{{request_view_url}}
+{{/if}}
+
+If you have any questions, please contact us and quote your reference number {{request_reference}}.
+
+Sincerely,
+{{shop_name}}

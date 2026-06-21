@@ -1,0 +1,30 @@
+NEW WITHDRAWAL REQUEST — {{shop_name}}
+======================================
+
+A new withdrawal request has been submitted and requires your attention.
+
+REQUEST SUMMARY
+---------------
+Reference        : {{request_reference}}
+Submitted at     : {{submitted_at}}
+Consumer         : {{customer_firstname}} {{customer_lastname}}
+Order reference  : {{order_reference}}
+Withdrawal scope : {{withdrawal_scope}}
+Shop             : {{shop_name}}
+
+ITEMS
+-----
+{{items_table}}
+
+{{#if customer_statement}}
+CONSUMER STATEMENT
+------------------
+{{customer_statement}}
+{{/if}}
+
+BACK-OFFICE LINK
+----------------
+{{admin_request_url}}
+
+--
+Automated notification — do not reply.

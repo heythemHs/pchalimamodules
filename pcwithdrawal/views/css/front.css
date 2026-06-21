@@ -1,5 +1,28 @@
 /* pcwithdrawal — front-end styles */
 
+/* =========================================================
+   Base wrapper
+   ========================================================= */
+.pcwithdrawal-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+}
+
+.pcwithdrawal-page-title {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+}
+
+.pcwithdrawal-form-intro,
+.pcwithdrawal-intro {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   Hook styles (footer / account / order-detail)
+   ========================================================= */
 .pcwithdrawal-footer-link {
     margin-top: 8px;
 }
@@ -18,21 +41,624 @@
     display: inline-block;
 }
 
-/* Withdrawal form */
-.pcwithdrawal-form-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+/* =========================================================
+   Honeypot — absolutely hidden; never display:none (bots detect it)
+   ========================================================= */
+.pcwithdrawal-hp {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    tab-index: -1;
 }
 
-.pcwithdrawal-form-wrapper .form-group {
+/* =========================================================
+   Option cards (start page)
+   ========================================================= */
+.pcwithdrawal-option-cards {
+    display: flex;
+    gap: 20px;
+    margin: 28px 0;
+    flex-wrap: wrap;
+}
+
+.pcwithdrawal-option-card {
+    flex: 1 1 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    background: #ffffff;
+    border: 2px solid #dddddd;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+}
+
+.pcwithdrawal-option-card:hover,
+.pcwithdrawal-option-card:focus {
+    border-color: #3498db;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+    outline: none;
+}
+
+.pcwithdrawal-option-card__icon {
+    margin-bottom: 14px;
+    color: #3498db;
+}
+
+.pcwithdrawal-option-card__title {
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+}
+
+.pcwithdrawal-option-card__desc {
+    font-size: 0.9rem;
+    color: #555555;
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.pcwithdrawal-option-card__cta {
+    font-size: 0.9rem;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.pcwithdrawal-legal-note {
+    font-size: 0.82rem;
+    color: #888888;
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   Forms
+   ========================================================= */
+.pcwithdrawal-form-wrapper,
+.pcwithdrawal-wrapper .form-group {
+    margin-bottom: 18px;
+}
+
+.pcwithdrawal-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.pcwithdrawal-label .required {
+    color: #e74c3c;
+    margin-left: 2px;
+}
+
+.pcwithdrawal-optional {
+    font-weight: normal;
+    color: #888888;
+    font-size: 0.85em;
+}
+
+.pcwithdrawal-input,
+.pcwithdrawal-textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pcwithdrawal-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.pcwithdrawal-fieldset {
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+}
+
+.pcwithdrawal-fieldset__legend {
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0 6px;
+}
+
+/* =========================================================
+   Error list
+   ========================================================= */
+.pcwithdrawal-error-list {
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+.pcwithdrawal-error-list li {
+    margin-bottom: 4px;
+}
+
+/* =========================================================
+   Info / disclaimer boxes
+   ========================================================= */
+.pcwithdrawal-info-message {
+    margin-bottom: 20px;
+}
+
+.pcwithdrawal-disclaimer {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-left: 5px solid #f0ad4e;
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin: 24px 0;
+}
+
+.pcwithdrawal-disclaimer__title {
+    font-size: 1rem;
+    margin: 0 0 10px 0;
+}
+
+.pcwithdrawal-disclaimer ul {
+    margin: 8px 0 0 0;
+    padding-left: 20px;
+}
+
+.pcwithdrawal-disclaimer li {
+    margin-bottom: 4px;
+}
+
+/* =========================================================
+   Order cards (customer mode)
+   ========================================================= */
+.pcwithdrawal-order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.pcwithdrawal-order-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+}
+
+.pcwithdrawal-order-card:hover {
+    border-color: #3498db;
+}
+
+.pcwithdrawal-order-card input[type="radio"]:checked + .pcwithdrawal-order-card__body {
+    font-weight: bold;
+}
+
+.pcwithdrawal-order-card__radio {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.pcwithdrawal-order-card__body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    flex: 1;
+}
+
+.pcwithdrawal-order-card__ref,
+.pcwithdrawal-order-card__date,
+.pcwithdrawal-order-card__total,
+.pcwithdrawal-order-card__status {
+    font-size: 0.9rem;
+    color: #333333;
+}
+
+/* =========================================================
+   Scope toggle (select page)
+   ========================================================= */
+.pcwithdrawal-scope-toggle {
+    margin-bottom: 20px;
+}
+
+.pcwithdrawal-scope-option {
+    margin-bottom: 8px;
+}
+
+.pcwithdrawal-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* =========================================================
+   Items block (select page)
+   ========================================================= */
+.pcwithdrawal-items-block {
+    margin-bottom: 24px;
+}
+
+.pcwithdrawal-items-header {
+    margin-bottom: 10px;
+}
+
+.pcwithdrawal-select-all-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pcwithdrawal-items-table th,
+.pcwithdrawal-items-table td {
+    vertical-align: middle;
+    padding: 8px 10px;
+}
+
+.pcwithdrawal-item-row.pcwithdrawal-item-row--selected {
+    background: #f0f8ff;
+}
+
+.pcwithdrawal-qty-input {
+    width: 72px;
+    min-width: 60px;
+}
+
+/* =========================================================
+   Review page
+   ========================================================= */
+.pcwithdrawal-review-section {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.pcwithdrawal-review-section:last-of-type {
+    border-bottom: none;
+}
+
+.pcwithdrawal-review-section__title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #2c3e50;
+}
+
+.pcwithdrawal-dl {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 6px 12px;
+    margin: 0;
+}
+
+.pcwithdrawal-dl dt {
+    font-weight: bold;
+    color: #555555;
+}
+
+.pcwithdrawal-dl dd {
+    margin: 0;
+}
+
+.pcwithdrawal-statement-quote {
+    background: #f9f9f9;
+    border-left: 3px solid #cccccc;
+    margin: 0;
+    padding: 10px 14px;
+    font-style: italic;
+    white-space: pre-wrap;
+}
+
+.pcwithdrawal-review-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.pcwithdrawal-btn-confirm {
+    flex-shrink: 0;
+}
+
+.pcwithdrawal-btn-back {
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   Success page
+   ========================================================= */
+.pcwithdrawal-success {
+    text-align: center;
+}
+
+.pcwithdrawal-success-icon {
     margin-bottom: 16px;
+    color: #27ae60;
 }
 
-.pcwithdrawal-honeypot {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    position: absolute !important;
-    left: -9999px !important;
+.pcwithdrawal-success-title {
+    font-size: 1.8rem;
+    color: #27ae60;
+    margin-bottom: 12px;
+}
+
+.pcwithdrawal-success-intro {
+    font-size: 1.05rem;
+    margin-bottom: 24px;
+}
+
+.pcwithdrawal-success-ref {
+    display: inline-block;
+    background: #eaf4fb;
+    border: 2px solid #3498db;
+    border-radius: 6px;
+    padding: 18px 32px;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.pcwithdrawal-success-ref__label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #555555;
+    margin-bottom: 6px;
+}
+
+.pcwithdrawal-success-ref__value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #2c3e50;
+}
+
+.pcwithdrawal-success-details {
+    display: inline-grid;
+    text-align: left;
+    margin: 0 auto 24px;
+}
+
+.pcwithdrawal-acknowledgement-notice {
+    background: #f9f9f9;
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 24px 0;
+    text-align: left;
+}
+
+.pcwithdrawal-acknowledgement-notice ol {
+    padding-left: 20px;
+    margin: 8px 0;
+}
+
+.pcwithdrawal-status-link {
+    margin-bottom: 20px;
+}
+
+.pcwithdrawal-print-actions {
+    margin-top: 20px;
+}
+
+.pcwithdrawal-tz {
+    font-size: 0.85em;
+    color: #888888;
+}
+
+/* =========================================================
+   Status page
+   ========================================================= */
+.pcwithdrawal-status-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.pcwithdrawal-status-ref {
+    font-size: 1.05rem;
+}
+
+.pcwithdrawal-status-ref__label {
+    color: #555555;
+    margin-right: 4px;
+}
+
+.pcwithdrawal-status-ref__value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.pcwithdrawal-status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    background: #d5e8d4;
+    color: #3d6b35;
+}
+
+.pcwithdrawal-status-badge--submitted      { background: #dce8fb; color: #2c5f9e; }
+.pcwithdrawal-status-badge--acknowledged   { background: #dce8fb; color: #2c5f9e; }
+.pcwithdrawal-status-badge--under_review   { background: #fff3cd; color: #856404; }
+.pcwithdrawal-status-badge--matched        { background: #fff3cd; color: #856404; }
+.pcwithdrawal-status-badge--accepted       { background: #d4edda; color: #155724; }
+.pcwithdrawal-status-badge--rejected       { background: #f8d7da; color: #721c24; }
+.pcwithdrawal-status-badge--reimbursed     { background: #d4edda; color: #155724; }
+.pcwithdrawal-status-badge--closed         { background: #e2e3e5; color: #383d41; }
+
+.pcwithdrawal-timeline__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pcwithdrawal-timeline__item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.pcwithdrawal-timeline__item:last-child {
+    border-bottom: none;
+}
+
+.pcwithdrawal-timeline__time {
+    font-size: 0.82rem;
+    color: #888888;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.pcwithdrawal-timeline__label {
+    font-weight: bold;
+}
+
+.pcwithdrawal-timeline__note {
+    margin: 4px 0 0 0;
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+.pcwithdrawal-contact-info {
+    margin-top: 24px;
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+.pcwithdrawal-not-found {
+    margin-top: 20px;
+}
+
+/* =========================================================
+   Token / verification page
+   ========================================================= */
+.pcwithdrawal-token-input {
+    font-family: monospace;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+.pcwithdrawal-auto-verify {
+    text-align: center;
+    padding: 32px;
+    color: #555555;
+}
+
+/* =========================================================
+   Statement
+   ========================================================= */
+.pcwithdrawal-statement-group {
+    margin-top: 20px;
+}
+
+/* =========================================================
+   Form actions row
+   ========================================================= */
+.pcwithdrawal-form-actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* =========================================================
+   Print styles
+   ========================================================= */
+@media print {
+    .pcwithdrawal-print-actions,
+    .pcwithdrawal-form-actions,
+    .pcwithdrawal-btn-back,
+    .pcwithdrawal-btn-confirm,
+    .pcwithdrawal-status-link,
+    nav,
+    header,
+    footer {
+        display: none !important;
+    }
+
+    .pcwithdrawal-wrapper {
+        max-width: 100%;
+        padding: 0;
+    }
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 600px) {
+    .pcwithdrawal-option-cards {
+        flex-direction: column;
+    }
+
+    .pcwithdrawal-option-card {
+        flex: 1 1 auto;
+    }
+
+    .pcwithdrawal-dl {
+        grid-template-columns: 1fr;
+    }
+
+    .pcwithdrawal-dl dt {
+        margin-top: 8px;
+    }
+
+    .pcwithdrawal-review-actions {
+        flex-direction: column-reverse;
+    }
+
+    .pcwithdrawal-success-ref__value {
+        font-size: 1.3rem;
+        letter-spacing: 2px;
+    }
+
+    .pcwithdrawal-items-table {
+        font-size: 0.85rem;
+    }
+}
+
+/* =========================================================
+   RTL support
+   ========================================================= */
+[dir="rtl"] .pcwithdrawal-option-card {
+    align-items: flex-end;
+}
+
+[dir="rtl"] .pcwithdrawal-disclaimer {
+    border-left: none;
+    border-right: 5px solid #f0ad4e;
+}
+
+[dir="rtl"] .pcwithdrawal-statement-quote {
+    border-left: none;
+    border-right: 3px solid #cccccc;
+}
+
+[dir="rtl"] .pcwithdrawal-dl {
+    direction: rtl;
+}
+
+[dir="rtl"] .pcwithdrawal-timeline__item {
+    direction: rtl;
+}
+
+[dir="rtl"] .pcwithdrawal-error-list {
+    padding: 0 20px 0 0;
 }

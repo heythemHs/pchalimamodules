@@ -1,0 +1,8 @@
+========================================
+{shop_name}
+========================================
+
+{dynamic_text_content}
+
+--
+Ce message concerne une demande de rétractation soumise sur {shop_url}.

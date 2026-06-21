@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Withdrawal Acknowledgement — {{shop_name}}</title>
+<style>
+  body { font-family:Arial,Helvetica,sans-serif; font-size:14px; color:#333333; margin:0; padding:0; }
+  table { border-collapse:collapse; width:100%; }
+  th, td { text-align:left; padding:8px 12px; border:1px solid #dddddd; }
+  th { background:#f2f2f2; }
+  .ref-box { background:#eaf4fb; border:2px solid #3498db; border-radius:4px; padding:16px; text-align:center; margin:20px 0; }
+  .ref-box .ref-label { font-size:12px; color:#555555; text-transform:uppercase; letter-spacing:1px; }
+  .ref-box .ref-value { font-size:24px; font-weight:bold; color:#2c3e50; letter-spacing:2px; }
+  .disclaimer { background:#fff8e1; border-left:4px solid #f0ad4e; padding:12px 16px; margin:20px 0; font-size:13px; }
+  .btn { display:inline-block; background:#3498db; color:#ffffff; text-decoration:none; padding:10px 20px; border-radius:4px; font-weight:bold; }
+</style>
+</head>
+<body>
+<p>Dear {{customer_firstname}} {{customer_lastname}},</p>
+
+<p>We have received your withdrawal request submitted on <strong>{{submitted_at}}</strong>.</p>
+
+<div class="ref-box">
+  <div class="ref-label">Your reference number</div>
+  <div class="ref-value">{{request_reference}}</div>
+</div>
+
+<p>Please keep this reference number for your records and quote it in any communication with us.</p>
+
+<h2 style="font-size:16px; border-bottom:1px solid #eeeeee; padding-bottom:6px;">Order details</h2>
+<table>
+  <tr><th>Order reference</th><td>{{order_reference}}</td></tr>
+  <tr><th>Withdrawal scope</th><td>{{withdrawal_scope}}</td></tr>
+  <tr><th>Submitted at</th><td>{{submitted_at}}</td></tr>
+</table>
+
+<h2 style="font-size:16px; border-bottom:1px solid #eeeeee; padding-bottom:6px; margin-top:24px;">Items declared for withdrawal</h2>
+{{items_table}}
+
+{{#if customer_statement}}
+<h2 style="font-size:16px; border-bottom:1px solid #eeeeee; padding-bottom:6px; margin-top:24px;">Your statement</h2>
+<p style="background:#f9f9f9; border-left:3px solid #cccccc; padding:10px 14px; font-style:italic;">{{customer_statement}}</p>
+{{/if}}
+
+<div class="disclaimer">
+  <strong>Important:</strong> This acknowledgement confirms receipt of your withdrawal declaration only.
+  It does <strong>not</strong> automatically cancel your order, trigger a refund, or authorise return of goods.
+  Our team will process your request within 14 days and contact you with further instructions.
+</div>
+
+{{#if request_view_url}}
+<p style="text-align:center; margin-top:24px;">
+  <a href="{{request_view_url}}" class="btn">Track your request status</a>
+</p>
+{{/if}}
+
+<p>If you have any questions, please contact us and quote your reference number <strong>{{request_reference}}</strong>.</p>
+
+<p>Sincerely,<br>{{shop_name}}</p>
+</body>
+</html>

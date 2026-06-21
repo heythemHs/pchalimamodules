@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Accusé de réception de rétractation — {{shop_name}}</title>
+<style>
+  body { font-family:Arial,Helvetica,sans-serif; font-size:14px; color:#333333; margin:0; padding:0; }
+  table { border-collapse:collapse; width:100%; }
+  th, td { text-align:left; padding:8px 12px; border:1px solid #dddddd; }
+  th { background:#f2f2f2; }
+  .ref-box { background:#eaf4fb; border:2px solid #3498db; border-radius:4px; padding:16px; text-align:center; margin:20px 0; }
+  .ref-box .ref-label { font-size:12px; color:#555555; text-transform:uppercase; letter-spacing:1px; }
+  .ref-box .ref-value { font-size:24px; font-weight:bold; color:#2c3e50; letter-spacing:2px; }
+  .disclaimer { background:#fff8e1; border-left:4px solid #f0ad4e; padding:12px 16px; margin:20px 0; font-size:13px; }
+  .btn { display:inline-block; background:#3498db; color:#ffffff; text-decoration:none; padding:10px 20px; border-radius:4px; font-weight:bold; }
+</style>
+</head>
+<body>
+<p>Madame, Monsieur {{customer_firstname}} {{customer_lastname}},</p>
+
+<p>Nous avons bien reçu votre demande de rétractation soumise le <strong>{{submitted_at}}</strong>.</p>
+
+<div class="ref-box">
+  <div class="ref-label">Votre numéro de référence</div>
+  <div class="ref-value">{{request_reference}}</div>
+</div>
+
+<p>Veuillez conserver ce numéro de référence et le citer dans toute correspondance avec nous.</p>
+
+<h2 style="font-size:16px; border-bottom:1px solid #eeeeee; padding-bottom:6px;">Détails de la commande</h2>
+<table>
+  <tr><th>Référence commande</th><td>{{order_reference}}</td></tr>
+  <tr><th>Étendue de la rétractation</th><td>{{withdrawal_scope}}</td></tr>
+  <tr><th>Soumis le</th><td>{{submitted_at}}</td></tr>
+</table>
+
+<h2 style="font-size:16px; border-bottom:1px solid #eeeeee; padding-bottom:6px; margin-top:24px;">Articles déclarés pour rétractation</h2>
+{{items_table}}
+
+{{#if customer_statement}}
+<h2 style="font-size:16px; border-bottom:1px solid #eeeeee; padding-bottom:6px; margin-top:24px;">Votre déclaration</h2>
+<p style="background:#f9f9f9; border-left:3px solid #cccccc; padding:10px 14px; font-style:italic;">{{customer_statement}}</p>
+{{/if}}
+
+<div class="disclaimer">
+  <strong>Important :</strong> Cet accusé de réception confirme uniquement la réception de votre déclaration de rétractation.
+  Il n'entraîne <strong>pas</strong> automatiquement l'annulation de votre commande, le remboursement ou le retour des marchandises.
+  Notre équipe traitera votre demande dans un délai de 14 jours et vous contactera avec les instructions nécessaires.
+</div>
+
+{{#if request_view_url}}
+<p style="text-align:center; margin-top:24px;">
+  <a href="{{request_view_url}}" class="btn">Suivre le statut de ma demande</a>
+</p>
+{{/if}}
+
+<p>Pour toute question, veuillez nous contacter en citant votre numéro de référence <strong>{{request_reference}}</strong>.</p>
+
+<p>Cordialement,<br>{{shop_name}}</p>
+</body>
+</html>

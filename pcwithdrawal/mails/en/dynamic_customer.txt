@@ -1,0 +1,8 @@
+========================================
+{shop_name}
+========================================
+
+{dynamic_text_content}
+
+--
+This message was sent regarding a withdrawal request submitted at {shop_url}.

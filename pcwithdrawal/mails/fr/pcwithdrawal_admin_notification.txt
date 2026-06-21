@@ -1,0 +1,30 @@
+NOUVELLE DEMANDE DE RÉTRACTATION — {{shop_name}}
+=================================================
+
+Une nouvelle demande de rétractation a été soumise et nécessite votre attention.
+
+RÉSUMÉ DE LA DEMANDE
+---------------------
+Référence                   : {{request_reference}}
+Soumis le                   : {{submitted_at}}
+Consommateur                : {{customer_firstname}} {{customer_lastname}}
+Référence commande          : {{order_reference}}
+Étendue de la rétractation  : {{withdrawal_scope}}
+Boutique                    : {{shop_name}}
+
+ARTICLES
+--------
+{{items_table}}
+
+{{#if customer_statement}}
+DÉCLARATION DU CONSOMMATEUR
+----------------------------
+{{customer_statement}}
+{{/if}}
+
+LIEN BACK-OFFICE
+----------------
+{{admin_request_url}}
+
+--
+Notification automatique — ne pas répondre.
