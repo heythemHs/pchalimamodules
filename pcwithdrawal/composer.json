@@ -1,0 +1,26 @@
+{
+    "name": "perpetualcode/pcwithdrawal",
+    "description": "EU Withdrawal Function for PrestaShop",
+    "type": "prestashop-module",
+    "license": "AFL-3.0",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Perpetual Code",
+            "email": "digital.perpetualcode@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "PerpetualCode\\PcWithdrawal\\": "classes/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}

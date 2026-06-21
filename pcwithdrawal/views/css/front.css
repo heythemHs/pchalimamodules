@@ -1,0 +1,38 @@
+/* pcwithdrawal — front-end styles */
+
+.pcwithdrawal-footer-link {
+    margin-top: 8px;
+}
+
+.pcwithdrawal-footer-link .pcwithdrawal-link,
+.pcwithdrawal-account-block .pcwithdrawal-link {
+    text-decoration: underline;
+    color: inherit;
+}
+
+.pcwithdrawal-order-block {
+    margin-top: 16px;
+}
+
+.pcwithdrawal-order-btn {
+    display: inline-block;
+}
+
+/* Withdrawal form */
+.pcwithdrawal-form-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.pcwithdrawal-form-wrapper .form-group {
+    margin-bottom: 16px;
+}
+
+.pcwithdrawal-honeypot {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+}
