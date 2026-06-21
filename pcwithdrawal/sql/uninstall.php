@@ -10,6 +10,7 @@ if (!defined('_PS_VERSION_')) {
 }
 
 return array(
+    'DROP TABLE IF EXISTS `{prefix}pcwithdrawal_exception_rule`',
     'DROP TABLE IF EXISTS `{prefix}pcwithdrawal_template_history`',
     'DROP TABLE IF EXISTS `{prefix}pcwithdrawal_rate_limit`',
     'DROP TABLE IF EXISTS `{prefix}pcwithdrawal_verification`',

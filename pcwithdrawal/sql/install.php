@@ -191,4 +191,22 @@ return array(
           KEY `idx_shop` (`id_shop`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
     ',
+
+    'pcwithdrawal_exception_rule' => '
+        CREATE TABLE IF NOT EXISTS `{prefix}pcwithdrawal_exception_rule` (
+          `id_pcwithdrawal_exception_rule` int(10) unsigned NOT NULL AUTO_INCREMENT,
+          `id_shop` int(10) unsigned NOT NULL,
+          `rule_type` varchar(32) NOT NULL DEFAULT \'product\',
+          `id_reference` int(10) unsigned DEFAULT NULL,
+          `reference_name` varchar(512) NOT NULL DEFAULT \'\',
+          `exception_code` varchar(32) NOT NULL,
+          `notes` text DEFAULT NULL,
+          `is_active` tinyint(1) NOT NULL DEFAULT 1,
+          `date_add` datetime NOT NULL,
+          `date_upd` datetime NOT NULL,
+          PRIMARY KEY (`id_pcwithdrawal_exception_rule`),
+          KEY `idx_shop_type` (`id_shop`, `rule_type`),
+          KEY `idx_reference` (`id_reference`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+    ',
 );

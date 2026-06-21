@@ -1,0 +1,334 @@
+/**
+ * pcwithdrawal — Admin back-office stylesheet.
+ * Targets: Bootstrap 3 / PrestaShop 1.7–9 admin.
+ */
+
+/* ============================================================
+   Status Badges
+============================================================ */
+
+.pcw-status-badge {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.pcw-status-submitted            { background-color: #aaa; color: #fff; }
+.pcw-status-acknowledged         { background-color: #5bc0de; color: #fff; }
+.pcw-status-matched              { background-color: #337ab7; color: #fff; }
+.pcw-status-under_review         { background-color: #f0ad4e; color: #fff; }
+.pcw-status-accepted             { background-color: #5cb85c; color: #fff; }
+.pcw-status-rejected             { background-color: #d9534f; color: #fff; }
+.pcw-status-reimbursed           { background-color: #3c9f3c; color: #fff; }
+.pcw-status-withdrawn_by_consumer { background-color: #777; color: #fff; }
+.pcw-status-closed               { background-color: #555; color: #fff; }
+
+/* Bootstrap badge overrides */
+.badge.badge-success { background-color: #5cb85c; }
+.badge.badge-danger  { background-color: #d9534f; }
+.badge.badge-warning { background-color: #f0ad4e; color: #fff; }
+.badge.badge-info    { background-color: #5bc0de; }
+.badge.badge-primary { background-color: #337ab7; }
+.badge.badge-default { background-color: #aaa; }
+
+/* ============================================================
+   Eligibility Badges
+============================================================ */
+
+.pcw-eligibility-badge {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    text-transform: lowercase;
+}
+
+/* ============================================================
+   Immutable Section Styling
+============================================================ */
+
+.pcw-immutable-panel .panel-heading {
+    background-color: #f7f7f7;
+    border-bottom: 2px solid #ddd;
+    cursor: pointer;
+}
+
+.pcw-immutable-body {
+    background-color: #fafafa;
+    border-left: 4px solid #ccc;
+}
+
+.pcw-info-table th {
+    width: 35%;
+    background-color: #f5f5f5;
+    font-weight: 600;
+    color: #555;
+}
+
+.pcw-info-table td {
+    color: #333;
+}
+
+.pcw-statement-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-left: 4px solid #5bc0de;
+    padding: 10px 14px;
+    border-radius: 3px;
+    font-style: italic;
+    color: #444;
+    margin-top: 4px;
+}
+
+/* ============================================================
+   Timeline (Event Log)
+============================================================ */
+
+.pcw-timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.pcw-timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #ddd;
+}
+
+.pcw-timeline-item {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.pcw-timeline-dot {
+    position: absolute;
+    left: -25px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #337ab7;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #337ab7;
+}
+
+.pcw-timeline-item.pcw-event-status-changed .pcw-timeline-dot { background: #f0ad4e; box-shadow: 0 0 0 2px #f0ad4e; }
+.pcw-timeline-item.pcw-event-admin-note .pcw-timeline-dot     { background: #5bc0de; box-shadow: 0 0 0 2px #5bc0de; }
+.pcw-timeline-item.pcw-event-order-linked .pcw-timeline-dot   { background: #5cb85c; box-shadow: 0 0 0 2px #5cb85c; }
+
+.pcw-timeline-content {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.pcw-timeline-header {
+    margin-bottom: 4px;
+    font-size: 13px;
+}
+
+.pcw-status-change {
+    font-size: 11px;
+    background: #f0f0f0;
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: #555;
+}
+
+.pcw-note-body {
+    background: #fffff0;
+    border: 1px solid #e8e800;
+    border-radius: 3px;
+    padding: 6px 10px;
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.pcw-event-reason {
+    color: #888;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* ============================================================
+   Requests List
+============================================================ */
+
+.pcw-requests-table th {
+    white-space: nowrap;
+    background: #f5f5f5;
+}
+
+.pcw-requests-table td {
+    vertical-align: middle;
+}
+
+.pcw-action-buttons .btn {
+    margin-right: 2px;
+}
+
+.pcw-filter-panel {
+    margin-bottom: 16px;
+}
+
+/* ============================================================
+   Settings Page
+============================================================ */
+
+.pcw-settings-tabs {
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.pcw-tab-content {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    background: #fff;
+}
+
+.pcw-tab-content fieldset {
+    margin-bottom: 24px;
+    padding: 16px;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+}
+
+.pcw-tab-content fieldset legend {
+    width: auto;
+    padding: 0 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    border-bottom: none;
+    margin-bottom: 12px;
+}
+
+/* Danger zone */
+.pcw-danger-zone {
+    border-color: #d9534f !important;
+    background: #fdf5f5;
+}
+
+.pcw-danger-zone legend {
+    color: #d9534f !important;
+}
+
+/* ============================================================
+   Template Editor
+============================================================ */
+
+.pcw-editor-layout {
+    margin-top: 16px;
+}
+
+.pcw-html-textarea,
+.pcw-text-textarea {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.pcw-editor-toolbar {
+    margin-bottom: 6px;
+}
+
+/* Placeholder reference panel */
+.pcw-placeholder-panel {
+    position: sticky;
+    top: 80px;
+}
+
+.pcw-placeholder-body {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.pcw-placeholder-item {
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.pcw-placeholder-item:hover {
+    background: #f0f8ff;
+}
+
+.pcw-ph-code {
+    display: block;
+    font-size: 11px;
+    color: #c7254e;
+    background: #f9f2f4;
+    border-radius: 3px;
+    padding: 1px 4px;
+    margin-bottom: 2px;
+}
+
+.pcw-ph-desc {
+    font-size: 11px;
+    color: #777;
+    display: block;
+    padding-left: 4px;
+}
+
+.pcw-unknown-placeholder {
+    background: #fff3cd;
+    border-bottom: 2px solid #ffc107;
+}
+
+/* History panel */
+.pcw-history-panel .panel-heading {
+    cursor: pointer;
+}
+
+/* ============================================================
+   Order Panel (hook)
+============================================================ */
+
+.pcw-order-panel .panel-heading {
+    background-color: #f0f7ff;
+    border-bottom: 1px solid #c8dff5;
+}
+
+.pcw-dl-compact dt {
+    width: 90px;
+    font-size: 11px;
+    color: #888;
+}
+
+.pcw-dl-compact dd {
+    margin-left: 100px;
+    font-size: 12px;
+}
+
+/* ============================================================
+   Detail Page
+============================================================ */
+
+.pcw-detail-wrap .panel-heading {
+    cursor: pointer;
+}
+
+.pcw-detail-wrap .panel-heading:hover {
+    background-color: #f0f0f0;
+}
+
+.pcw-requests-panel .panel-heading {
+    background: linear-gradient(135deg, #336699 0%, #2c5282 100%);
+    color: #fff;
+}
+
+.pcw-requests-panel .panel-heading .badge {
+    background: rgba(255,255,255,0.3);
+}

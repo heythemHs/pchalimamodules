@@ -11,6 +11,7 @@ if (!defined('_PS_VERSION_')) {
 
 return array(
     // Delete child data first (referential integrity)
+    'DELETE FROM `{prefix}pcwithdrawal_exception_rule`',
     'DELETE FROM `{prefix}pcwithdrawal_template_history`',
     'DELETE FROM `{prefix}pcwithdrawal_rate_limit`',
     'DELETE FROM `{prefix}pcwithdrawal_verification`',
@@ -21,6 +22,7 @@ return array(
     'DELETE FROM `{prefix}pcwithdrawal_request`',
 
     // Then drop the tables
+    'DROP TABLE IF EXISTS `{prefix}pcwithdrawal_exception_rule`',
     'DROP TABLE IF EXISTS `{prefix}pcwithdrawal_template_history`',
     'DROP TABLE IF EXISTS `{prefix}pcwithdrawal_rate_limit`',
     'DROP TABLE IF EXISTS `{prefix}pcwithdrawal_verification`',

@@ -120,19 +120,66 @@ class EligibilityService
             return null;
         }
 
+        // Collect product and category IDs from items for a single query
+        $productIds  = array();
+        $categoryIds = array();
+
         foreach ($items as $item) {
-            $idProduct          = isset($item['id_product']) ? (int) $item['id_product'] : 0;
-            $idProductAttribute = isset($item['id_product_attribute']) ? (int) $item['id_product_attribute'] : 0;
+            $idProduct = isset($item['id_product']) ? (int) $item['id_product'] : 0;
+            if ($idProduct) {
+                $productIds[] = $idProduct;
 
-            if (!$idProduct) {
-                continue;
+                // Collect category IDs for this product
+                $cats = $this->db->executeS(
+                    'SELECT `id_category`
+                     FROM `' . _DB_PREFIX_ . 'category_product`
+                     WHERE `id_product` = ' . $idProduct
+                );
+                if (is_array($cats)) {
+                    foreach ($cats as $cat) {
+                        $categoryIds[] = (int) $cat['id_category'];
+                    }
+                }
             }
+        }
 
-            // Check product-level exception
+        $productIds  = array_unique($productIds);
+        $categoryIds = array_unique($categoryIds);
+
+        if (empty($productIds)) {
+            return null;
+        }
+
+        // Check product-level rules
+        $productInClause = implode(',', $productIds);
+        $rule = $this->db->getRow(
+            'SELECT * FROM `' . bqSQL($tableName) . '`
+             WHERE `id_shop` = ' . $this->idShop . '
+               AND `rule_type` = \'product\'
+               AND `id_reference` IN (' . $productInClause . ')
+               AND `is_active` = 1
+             LIMIT 1'
+        );
+
+        if ($rule) {
+            return array(
+                'code'   => EligibilityCode::EXCLUDED_GOODS,
+                'reason' => sprintf(
+                    'Product "%s" may be excluded from the right of withdrawal. Exception: %s.',
+                    $rule['reference_name'],
+                    $rule['exception_code']
+                ),
+            );
+        }
+
+        // Check category-level rules
+        if (!empty($categoryIds)) {
+            $catInClause = implode(',', $categoryIds);
             $rule = $this->db->getRow(
                 'SELECT * FROM `' . bqSQL($tableName) . '`
                  WHERE `id_shop` = ' . $this->idShop . '
-                   AND `id_product` = ' . $idProduct . '
+                   AND `rule_type` = \'category\'
+                   AND `id_reference` IN (' . $catInClause . ')
                    AND `is_active` = 1
                  LIMIT 1'
             );
@@ -140,7 +187,39 @@ class EligibilityService
             if ($rule) {
                 return array(
                     'code'   => EligibilityCode::EXCLUDED_GOODS,
-                    'reason' => 'One or more items may be excluded from the right of withdrawal. Merchant review required. Exception rule: ' . pSQL($rule['exception_code']),
+                    'reason' => sprintf(
+                        'Category "%s" may be excluded from the right of withdrawal. Exception: %s.',
+                        $rule['reference_name'],
+                        $rule['exception_code']
+                    ),
+                );
+            }
+        }
+
+        // Check product_type level rules (virtual products)
+        $hasVirtual = $this->db->getValue(
+            'SELECT COUNT(*)
+             FROM `' . _DB_PREFIX_ . 'product`
+             WHERE `id_product` IN (' . $productInClause . ')
+               AND `is_virtual` = 1'
+        );
+
+        if ($hasVirtual) {
+            $rule = $this->db->getRow(
+                'SELECT * FROM `' . bqSQL($tableName) . '`
+                 WHERE `id_shop` = ' . $this->idShop . '
+                   AND `rule_type` = \'product_type\'
+                   AND `id_reference` IS NULL
+                   AND `is_active` = 1
+                 LIMIT 1'
+            );
+            if ($rule) {
+                return array(
+                    'code'   => EligibilityCode::DIGITAL_CONSUMED,
+                    'reason' => sprintf(
+                        'Virtual/digital product in cart may be excluded. Exception: %s.',
+                        $rule['exception_code']
+                    ),
                 );
             }
         }
